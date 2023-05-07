@@ -1656,7 +1656,7 @@
     <string name="common_signin_button_text">Sign in</string>
     <string name="common_signin_button_text_long">Sign in with Google</string>
     <string name="copy_toast_msg">Link copied to clipboard</string>
-    <string name="default_web_client_id" translatable="false">971626199434-kni50ekqfg7d6mgdoagh0tu73j3cikv4.apps.googleusercontent.com</string>
+    <string name="default_web_client_id" translatable="false">408892366067-thkumrhdpmpt1hbktotpk4jf1b4vagbh.apps.googleusercontent.com</string>
     <string description="Screen reader announcement for when a checkbox is on error. [CHAR LIMIT=NONE]" name="error_a11y_label">
     Error: invalid
   </string>
@@ -1668,11 +1668,11 @@
     <string name="fallback_menu_item_open_in_browser">Open in browser</string>
     <string name="fallback_menu_item_share_link">Share link</string>
     <string name="fcm_fallback_notification_channel_label">Miscellaneous</string>
-    <string name="gcm_defaultSenderId" translatable="false">971626199434</string>
-    <string name="google_api_key" translatable="false">AIzaSyC8MMVIRrer87cYv1jL_BD9x8yNA8JVHQc</string>
-    <string name="google_app_id" translatable="false">1:971626199434:android:da4b22f34be0360e7f7073</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyC8MMVIRrer87cYv1jL_BD9x8yNA8JVHQc</string>
-    <string name="google_storage_bucket" translatable="false">rush-a8215.appspot.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">408892366067</string>
+    <string name="google_api_key" translatable="false">AIzaSyAUhy7F3CEysKMXB-DgNMBDkxH3VjKV8ow</string>
+    <string name="google_app_id" translatable="false">1:408892366067:android:9b93f42aee571c66f9ab86</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAUhy7F3CEysKMXB-DgNMBDkxH3VjKV8ow</string>
+    <string name="google_storage_bucket" translatable="false">flutter-kasparov.appspot.com</string>
     <string name="hide_bottom_view_on_scroll_behavior" translatable="false">com.google.android.material.behavior.HideBottomViewOnScrollBehavior</string>
     <string description="Content description for an icon that appears in the title area of a dialog" name="icon_content_description">Dialog Icon</string>
     <string name="item_view_role_description">Tab</string>
@@ -1774,7 +1774,7 @@
     <string name="path_password_eye_mask_strike_through" translatable="false">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_eye_mask_visible" translatable="false">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
     <string name="path_password_strike_through" translatable="false">M3.27,4.27 L19.74,20.74</string>
-    <string name="project_id" translatable="false">rush-a8215</string>
+    <string name="project_id" translatable="false">flutter-kasparov</string>
     <string name="search_menu_title">Search</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>

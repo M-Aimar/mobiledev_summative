@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "971626199434",
-    "project_id": "rush-a8215",
-    "storage_bucket": "rush-a8215.appspot.com"
+    "project_number": "408892366067",
+    "project_id": "flutter-kasparov",
+    "storage_bucket": "flutter-kasparov.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:971626199434:android:da4b22f34be0360e7f7073",
+        "mobilesdk_app_id": "1:408892366067:android:9b93f42aee571c66f9ab86",
         "android_client_info": {
-          "package_name": "com.company.rushgrocery"
+          "package_name": "com.example.rushgrocery"
         }
       },
       "oauth_client": [
         {
-          "client_id": "971626199434-kni50ekqfg7d6mgdoagh0tu73j3cikv4.apps.googleusercontent.com",
+          "client_id": "408892366067-thkumrhdpmpt1hbktotpk4jf1b4vagbh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC8MMVIRrer87cYv1jL_BD9x8yNA8JVHQc"
+          "current_key": "AIzaSyAUhy7F3CEysKMXB-DgNMBDkxH3VjKV8ow"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "971626199434-kni50ekqfg7d6mgdoagh0tu73j3cikv4.apps.googleusercontent.com",
+              "client_id": "408892366067-thkumrhdpmpt1hbktotpk4jf1b4vagbh.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

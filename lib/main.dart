@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       home: const Splash(),
       routes: {
         '/auth': (context) => const AuthScreen(),
-        '/home': (context) => HomeScreen(),
+        '/home': (context) => const HomeScreen(),
         '/splash': (context) => const Splash(),
       },
       initialRoute: '/splash',
@@ -57,15 +57,8 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
 
     // Start the animation and navigate to the next screen after 3 seconds
     _animationController.forward();
-    Timer(const Duration(seconds: 3), () {
-      // Check if user is already logged in
-      User? user = FirebaseAuth.instance.currentUser;
-      if (user != null) {
-        Navigator.pushReplacementNamed(context, '/home');
-      } else {
-        Navigator.pushReplacementNamed(context, '/auth');
-      }
-    });
+    Timer(const Duration(seconds: 3),
+        () => Navigator.pushNamed(context, '/auth'));
   }
 
   @override

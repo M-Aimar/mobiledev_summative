@@ -94,16 +94,6 @@ class _AuthScreenState extends State<AuthScreen> {
     }
   }
 
-  String _toCamelCase(String input) {
-    if (input.isEmpty) {
-      return input;
-    }
-    final words = input.split(" ");
-    final firstWord = words.first.toLowerCase();
-    final restOfWords = words.skip(1);
-    return "$firstWord${restOfWords.map((word) => "${word[0].toUpperCase()}${word.substring(1)}").join("")}";
-  }
-
   @override
   void dispose() {
     _debounceTimer?.cancel();
@@ -187,9 +177,10 @@ class _AuthScreenState extends State<AuthScreen> {
       child: Text(
         errorMessage ?? '',
         style: const TextStyle(
-          color: Colors.red,
-          fontSize: 16.0,
-        ),
+            color: Colors.white,
+            fontSize: 20.0,
+            letterSpacing: 2,
+            fontWeight: FontWeight.w100),
       ),
     );
   }
@@ -227,7 +218,7 @@ class _AuthScreenState extends State<AuthScreen> {
               width: 30,
               height: 30,
               child: CircularProgressIndicator(
-                color: Colors.white,
+                color: Colors.green,
                 strokeWidth: 2,
               ),
             )
@@ -252,7 +243,7 @@ class _AuthScreenState extends State<AuthScreen> {
               fontSize: 18.0,
               fontWeight: FontWeight.w300,
               fontStyle: FontStyle.normal,
-              color: Colors.green,
+              color: Colors.white,
             ),
           )),
       TextButton(
@@ -271,7 +262,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.normal,
-                color: Colors.green,
+                color: Colors.white,
               ),
             ),
           ))
@@ -327,7 +318,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w300,
                                     fontStyle: FontStyle.normal,
-                                    color: Colors.green,
+                                    color: Colors.white,
                                   ),
                                 ),
                               )),
@@ -342,7 +333,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.normal,
                                     fontStyle: FontStyle.normal,
-                                    color: Colors.green,
+                                    color: Colors.white,
                                   ),
                                 ),
                               )),

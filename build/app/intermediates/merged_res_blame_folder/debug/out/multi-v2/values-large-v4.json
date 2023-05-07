@@ -4,7 +4,7 @@
             "outputFile": "com.example.rushgrocery.app-mergeDebugResources-39:/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "/Users/fareedahokunade/.gradle/caches/transforms-3/1260b1d8a17eab33243cd8fdf1a2d442/transformed/material-1.7.0/res/values-large-v4/values-large-v4.xml",
+                    "source": "C:\\Users\\Hp\\.gradle\\caches\\transforms-3\\1260b1d8a17eab33243cd8fdf1a2d442\\transformed\\material-1.7.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,10",
                         "startColumns": "4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/fareedahokunade/.gradle/caches/transforms-3/3162e77a8df6f0a4052b03c1595495c7/transformed/appcompat-1.5.0/res/values-large-v4/values-large-v4.xml",
+                    "source": "C:\\Users\\Hp\\.gradle\\caches\\transforms-3\\3162e77a8df6f0a4052b03c1595495c7\\transformed\\appcompat-1.5.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
