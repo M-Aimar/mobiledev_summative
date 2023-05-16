@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'home.dart';
-import 'cart.dart';
-import 'cartMixin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
+import 'cart.dart';
 
 // Get the current user ID
 String getCurrentUserId() {
@@ -14,19 +10,27 @@ String getCurrentUserId() {
   return userId;
 }
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
   final String productName;
   final int price;
   final String imageURL;
-  final String userId = getCurrentUserId();
   final int quantity;
 
-  ProductPage({
+  const ProductPage({
+    Key? key,
     required this.productName,
     required this.price,
     required this.imageURL,
     required this.quantity,
-  });
+  }) : super(key: key);
+
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
+  final String userId = getCurrentUserId();
+
   CollectionReference cartItemsCollection =
       FirebaseFirestore.instance.collection('cartItems');
 
@@ -37,7 +41,7 @@ class ProductPage extends StatelessWidget {
     cartItemsCollection.add({
       'userId': getCurrentUserId(),
       'name': productName,
-      'price': price,
+      'price': widget.price,
       'image': imageURL,
       'quantity': 1
     });
@@ -58,10 +62,10 @@ class ProductPage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CartPage()),
+                  MaterialPageRoute(builder: (context) => const CartPage()),
                 );
               },
-              child: IconButton(
+              child: const IconButton(
                 icon: Icon(Icons.shopping_cart, color: Colors.black),
                 onPressed: null,
               ),
@@ -71,7 +75,7 @@ class ProductPage extends StatelessWidget {
             fit: StackFit.expand,
             children: [
               Image.network(
-                imageURL,
+                widget.imageURL,
                 fit: BoxFit.cover,
               ),
             ],
@@ -86,8 +90,8 @@ class ProductPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                productName,
-                style: TextStyle(
+                widget.productName,
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                     color: Color(0xff666565)),
@@ -96,37 +100,37 @@ class ProductPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
               child: Text(
-                '\Rwf $price',
+                'Rwf ${widget.price}',
                 textAlign: TextAlign.end,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
                     color: Colors.green),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text(
                 'Details',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text(
                 'Price Type',
                 style: TextStyle(fontSize: 15, color: Colors.grey),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text(
                 'Category',
                 style: TextStyle(fontSize: 15, color: Colors.grey),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text(
                 'Vendors',
                 style: TextStyle(fontSize: 15, color: Colors.grey),
@@ -147,7 +151,7 @@ class ProductPage extends StatelessWidget {
                     ),
                     primary: Colors.white,
                   ),
-                  child: Text(
+                  child: const Text(
                     "Add To Cart",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -157,21 +161,20 @@ class ProductPage extends StatelessWidget {
                   ),
                   onPressed: () {
                     Map<String, dynamic> product = {
-                      "name": productName,
-                      "price": price,
+                      "name": widget.productName,
+                      "price": widget.price,
                       "quantity": 1,
-                      "imageURL": imageURL,
-                      "quantity": 1
+                      "imageURL": widget.imageURL,
                     };
 
                     // Call the addToCart method of the CartPage
-                    addProductToCart(
-                        userId, productName, price, imageURL, quantity);
+                    addProductToCart(userId, widget.productName, widget.price,
+                        widget.imageURL, widget.quantity);
 
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CartPage(),
+                        builder: (context) => const CartPage(),
                       ),
                     );
                   },

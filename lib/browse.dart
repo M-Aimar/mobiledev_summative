@@ -46,7 +46,7 @@ class _BrowseItemsPageState extends State<BrowseItemsPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CartPage()),
+                  MaterialPageRoute(builder: (context) => const CartPage()),
                 );
               },
               child: const IconButton(
@@ -91,7 +91,7 @@ class _BrowseItemsPageState extends State<BrowseItemsPage> {
           }
 
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
@@ -104,9 +104,9 @@ class _BrowseItemsPageState extends State<BrowseItemsPage> {
                 .toList();
 
             return GridView.builder(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               itemCount: filteredProducts.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 1.0,
               ),
@@ -139,17 +139,17 @@ class _BrowseItemsPageState extends State<BrowseItemsPage> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Text(
                             product['name'],
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
-                          SizedBox(height: 4),
+                          const SizedBox(height: 4),
                           Text(
                             'Rwf ${product['price']}',
                             style: TextStyle(
@@ -166,7 +166,7 @@ class _BrowseItemsPageState extends State<BrowseItemsPage> {
             );
           }
 
-          return Text('No products found.');
+          return const Text('No products found.');
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -177,17 +177,23 @@ class _BrowseItemsPageState extends State<BrowseItemsPage> {
             MaterialPageRoute(builder: (context) => pages[index]),
           );
         },
-        items: [
-          const BottomNavigationBarItem(
+        items: const [
+          BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Home",
           ),
-          const BottomNavigationBarItem(
-              icon: Icon(Icons.search), label: "Browse"),
-          const BottomNavigationBarItem(
-              icon: const Icon(Icons.book), label: "Order History"),
-          const BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: "Profile"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: "Browse",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            label: "Order History",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: "Profile",
+          ),
         ],
         selectedItemColor: Colors.green,
         unselectedItemColor: Colors.grey,

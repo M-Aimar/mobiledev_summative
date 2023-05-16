@@ -15,7 +15,7 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   bool _isLogin = true;
   String? errorMessage = '';
-  bool _loading = true;
+  bool _loading = false;
   final _formKey = GlobalKey<FormState>();
   Timer? _debounceTimer;
   final textFormFieldFocusNode = FocusNode();
@@ -119,65 +119,52 @@ class _AuthScreenState extends State<AuthScreen> {
     return Padding(
         padding: const EdgeInsets.only(bottom: 30),
         child: TextFormField(
-            controller: controller,
-            style: GoogleFonts.montserrat(
+          controller: controller,
+          showCursor: true,
+          style: GoogleFonts.montserrat(
+            textStyle: const TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.w400,
+              fontStyle: FontStyle.normal,
+              color: Color(0xffffffff),
+            ),
+          ),
+          decoration: InputDecoration(
+            hintText: title,
+            contentPadding:
+                const EdgeInsets.only(left: 20, bottom: 10, top: 10),
+            hintStyle: GoogleFonts.montserrat(
               textStyle: const TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.w400,
+                fontSize: 18.0,
+                fontWeight: FontWeight.w300,
                 fontStyle: FontStyle.normal,
                 color: Color(0xffffffff),
               ),
             ),
-            decoration: InputDecoration(
-                hintText: title,
-                contentPadding:
-                    const EdgeInsets.only(left: 20, bottom: 10, top: 10),
-                hintStyle: GoogleFonts.montserrat(
-                  textStyle: const TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.w300,
-                    fontStyle: FontStyle.normal,
-                    color: Color(0xffffffff),
-                  ),
-                ),
-                labelText: _isControllerEmpty.containsKey(controllerName) &&
-                        _isControllerEmpty[controllerName] != true
-                    ? null
-                    : title.toLowerCase(),
-                labelStyle: GoogleFonts.montserrat(
-                  textStyle: const TextStyle(
-                      fontSize: 20.0,
-                      letterSpacing: 4,
-                      fontWeight: FontWeight.w500,
-                      fontStyle: FontStyle.normal,
-                      color: Colors.black),
-                ),
-                enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(100)),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                        color: Color.fromARGB(255, 79, 77, 77)),
-                    borderRadius: BorderRadius.circular(100))),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter your $title';
-              }
-              return null;
-            },
-            obscureText: title.toLowerCase().trim() == 'password',
-            onChanged: (value) {
-              _isControllerEmpty[controllerName] = value == "";
-            }));
+            enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.white),
+                borderRadius: BorderRadius.circular(100)),
+            focusedBorder: OutlineInputBorder(
+                borderSide: const BorderSide(color: Colors.white),
+                borderRadius: BorderRadius.circular(100)),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter your $title';
+            }
+            return null;
+          },
+          obscureText: title.toLowerCase().trim() == 'password',
+        ));
   }
 
   Widget _errorMessage() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 1.0),
       child: Text(
         errorMessage ?? '',
         style: const TextStyle(
-            color: Colors.white,
+            color: Colors.red,
             fontSize: 20.0,
             letterSpacing: 2,
             fontWeight: FontWeight.w100),
@@ -325,7 +312,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         if (_isLogin)
                           Padding(
                               padding:
-                                  const EdgeInsets.only(top: 85, bottom: 35),
+                                  const EdgeInsets.only(top: 50, bottom: 35),
                               child: Text(
                                 "Login to your account",
                                 style: GoogleFonts.montserrat(

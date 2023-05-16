@@ -5,7 +5,7 @@ import 'productdetails.dart';
 class CategoryPage extends StatelessWidget {
   final String categoryId;
 
-  const CategoryPage({required this.categoryId});
+  const CategoryPage({Key? key, required this.categoryId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

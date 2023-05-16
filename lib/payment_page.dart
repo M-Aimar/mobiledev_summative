@@ -8,7 +8,7 @@ import 'orders.dart';
 class PaymentPage extends StatefulWidget {
   final double amount;
 
-  PaymentPage({required this.amount});
+  const PaymentPage({Key? key, required this.amount}) : super(key: key);
 
   @override
   _PaymentPageState createState() => _PaymentPageState();
@@ -60,9 +60,9 @@ class _PaymentPageState extends State<PaymentPage> {
           .where("userId", isEqualTo: user?.uid)
           .get()
           .then((querySnapshot) {
-        querySnapshot.docs.forEach((documentSnapshot) {
+        for (var documentSnapshot in querySnapshot.docs) {
           documentSnapshot.reference.delete();
-        });
+        }
       }).catchError((error) {
         // Handle any errors that occur during the removal process
         print("Error removing items from cart: $error");
@@ -86,29 +86,29 @@ class _PaymentPageState extends State<PaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Payment Page'),
+        title: const Text('Payment Page'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Amount: \Rwf${widget.amount.toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 18),
+              'Amount: Rwf${widget.amount.toStringAsFixed(2)}',
+              style: const TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _startPayment,
-              child: Text('Make Payment'),
+              child: const Text('Make Payment'),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               _paymentError,
-              style: TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.red),
             ),
             Text(
               'Payment Reference: $_paymentReference',
-              style: TextStyle(fontSize: 16),
+              style: const TextStyle(fontSize: 16),
             ),
           ],
         ),

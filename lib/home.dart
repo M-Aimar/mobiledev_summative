@@ -1,11 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:rushgrocery/cart.dart';
 import 'package:rushgrocery/orders.dart';
-import 'package:rushgrocery/profile.dart';
 import 'browse.dart';
 import 'category.dart';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,12 +14,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final List<Widget> pages = [
-    const HomeScreen(),
-    const BrowseItemsPage(),
-    OrdersPage(),
-    ProfilePage()
-  ];
 
   String _searchText = '';
 
@@ -31,6 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  final List<Widget> pages = [
+    const HomeScreen(),
+    const BrowseItemsPage(),
+    const OrdersPage(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CartPage()),
+                  MaterialPageRoute(builder: (context) => const CartPage()),
                 );
               },
               child: const IconButton(
@@ -72,96 +69,123 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Expanded(
                           child: TextField(
-                            decoration: const InputDecoration(
-                              hintText: 'Search Product',
-                              border: InputBorder.none,
-                            ),
-                            onChanged: _performSearch,
-                          ),
+                              decoration: const InputDecoration(
+                                hintText: 'Search Product',
+                                border: InputBorder.none,
+                              ),
+                              onChanged: _performSearch),
                         ),
                       ]),
                     )),
               ))),
       backgroundColor: Colors.white,
-      body: StreamBuilder<QuerySnapshot>(
-        stream: _firestore.collection('categories').snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          }
-
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          }
-
-          if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
-            final categories = snapshot.data!.docs;
-            List<QueryDocumentSnapshot> filteredCategories = categories
-                .where((category) => category['name']
-                    .toString()
-                    .toLowerCase()
-                    .contains(_searchText.toLowerCase()))
-                .toList();
-
-            return GridView.builder(
-              padding: EdgeInsets.all(10),
-              itemCount: filteredCategories.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      body: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 1,
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: GridView.count(
                 crossAxisCount: 2,
-                childAspectRatio: 1.0,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                final category = filteredCategories[index];
-
-                return GestureDetector(
+                mainAxisSpacing: 14,
+                crossAxisSpacing: 10,
+                children: [
+                  GestureDetector(
                     onTap: () {
-                      // Navigate to category page using category id
-
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                CategoryPage(categoryId: category['id']),
+                                const CategoryPage(categoryId: 'pastry'),
                           ));
                     },
-                    child: Card(
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                    child: Stack(children: [
+                      Image.asset(
+                        "assets/images/Rectangle 29.png",
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Expanded(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.network(
-                                category['imageURL'],
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              category['name'],
+                      const Positioned(
+                        left: 10,
+                        top: 10,
+                        child: Text("Pastry",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
+                      )
+                    ]),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const CategoryPage(categoryId: 'vegetables'),
+                          ));
+                    },
+                    child: Stack(children: [
+                      Image.asset(
+                        "assets/images/Rectangle 30.png",
+                      ),
+                      const Positioned(
+                        left: 10,
+                        top: 10,
+                        child: Text("Vegetables",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
+                      )
+                    ]),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const CategoryPage(categoryId: 'eggs&dairy'),
+                          ));
+                    },
+                    child: Stack(children: [
+                      Image.asset(
+                        "assets/images/Rectangle 31.png",
+                      ),
+                      const Positioned(
+                        left: 10,
+                        top: 10,
+                        child: Text("Eggs & Dairy",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)),
+                      )
+                    ]),
+                  ),
+                  GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const CategoryPage(categoryId: 'fruit'),
+                            ));
+                      },
+                      child: Stack(children: [
+                        Image.asset("assets/images/Rectangle 29.png",
+                            fit: BoxFit.fill),
+                        const Positioned(
+                          left: 10,
+                          top: 10,
+                          child: Text("Fruit",
                               style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ));
-              },
-            );
-          }
-
-          return Text('No categories found.');
-        },
-      ),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
+                        )
+                      ])),
+                ],
+              ),
+            )
+          ])),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (int index) {
           // Navigates to the corresponding page
@@ -180,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const BottomNavigationBarItem(
               icon: const Icon(Icons.book), label: "Order History"),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.person), label: "Profile"),
+              icon: const Icon(Icons.person), label: "Profile"),
         ],
         selectedItemColor: Colors.green,
         unselectedItemColor: Colors.grey,

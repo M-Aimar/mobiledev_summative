@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'home.dart';
 import 'auth_screen.dart';
 import 'dart:ui' as ui;

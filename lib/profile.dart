@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rushgrocery/auth_screen.dart';
 
-import 'auth.dart';
-
 class ProfilePage extends StatelessWidget {
   final User? user = FirebaseAuth.instance.currentUser;
 
@@ -13,7 +11,7 @@ class ProfilePage extends StatelessWidget {
       await FirebaseAuth.instance.signOut();
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => AuthScreen()),
+        MaterialPageRoute(builder: (context) => const AuthScreen()),
       );
       // Redirect to the login page or home page
     } catch (e) {
@@ -26,7 +24,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: const Text('Profile'),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: FirebaseFirestore.instance
@@ -35,52 +33,51 @@ class ProfilePage extends StatelessWidget {
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
 
-          Map<String, dynamic>? userData =
-              snapshot.data!.docs[0].data() as Map<String, dynamic>?;
+          Map<String, dynamic>? userData = snapshot.data!.docs[0].data();
 
           return Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Name',
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 8.0),
+                const SizedBox(height: 8.0),
                 Text(
-                  userData?['firstName'] ?? '' + " " + userData?['lastName'],
-                  style: TextStyle(fontSize: 16.0),
+                  userData['firstName'] ?? '' " " + userData['lastName'],
+                  style: const TextStyle(fontSize: 16.0),
                 ),
-                SizedBox(height: 16.0),
-                Text(
+                const SizedBox(height: 16.0),
+                const Text(
                   'Email',
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 8.0),
+                const SizedBox(height: 8.0),
                 Text(
-                  userData?['email'] ?? '',
-                  style: TextStyle(fontSize: 16.0),
+                  userData['email'] ?? '',
+                  style: const TextStyle(fontSize: 16.0),
                 ),
-                SizedBox(height: 16.0),
-                Text(
+                const SizedBox(height: 16.0),
+                const Text(
                   'Phone Number',
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 8.0),
+                const SizedBox(height: 8.0),
                 Text(
-                  userData?['phoneNumber'] ?? '',
-                  style: TextStyle(fontSize: 16.0),
+                  userData['phoneNumber'] ?? '',
+                  style: const TextStyle(fontSize: 16.0),
                 ),
-                Spacer(),
+                const Spacer(),
                 ElevatedButton(
                   onPressed: () => _signOut(context),
-                  child: Text('Sign Out'),
+                  child: const Text('Sign Out'),
                 ),
               ],
             ),

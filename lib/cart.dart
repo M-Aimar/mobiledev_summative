@@ -6,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'address_util.dart';
 
 class CartPage extends StatefulWidget {
+  const CartPage({Key? key}) : super(key: key);
+
   @override
   _CartPageState createState() => _CartPageState();
 }
@@ -17,7 +19,6 @@ class _CartPageState extends State<CartPage> {
 
   List<Map<String, dynamic>> items = [];
 
-  @override
   void updateCartItem(String userId, Map<String, dynamic> updatedData) {
     cartItemsCollection
         .doc(userId)
@@ -44,6 +45,7 @@ class _CartPageState extends State<CartPage> {
     }
   }
 
+  @override
   void initState() {
     super.initState();
     fetchCartItems();
@@ -67,7 +69,6 @@ class _CartPageState extends State<CartPage> {
     User? user = FirebaseAuth.instance.currentUser;
     String userId = user!.uid;
     return userId;
-    return 'your_user_id';
   }
 
   @override
@@ -79,7 +80,7 @@ class _CartPageState extends State<CartPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Cart"),
+        title: const Text("My Cart"),
       ),
       body: Column(
         children: [

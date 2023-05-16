@@ -1,12 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:google_maps_webservice/places.dart';
 
 class EditAddressPage extends StatefulWidget {
   final String currentAddress;
-  EditAddressPage({required this.currentAddress});
+  const EditAddressPage({Key? key, required this.currentAddress})
+      : super(key: key);
   @override
   _EditAddressPageState createState() => _EditAddressPageState();
 }
@@ -22,7 +21,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Address'),
+        title: const Text('Edit Address'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -30,21 +29,21 @@ class _EditAddressPageState extends State<EditAddressPage> {
           children: [
             TextField(
               controller: nameController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Name',
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             TextField(
               controller: phoneNumberController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Phone Number',
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             TextField(
               controller: addressController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Address',
               ),
               onTap: () async {
@@ -64,21 +63,21 @@ class _EditAddressPageState extends State<EditAddressPage> {
                 }
               },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             TextField(
               controller: sectorController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Sector',
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             TextField(
               controller: cityController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'City',
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () async {
                 // Save the edited address details to the database
@@ -86,7 +85,7 @@ class _EditAddressPageState extends State<EditAddressPage> {
                 // Pass the updated address back to the CartPage
                 Navigator.pop(context, addressController.text);
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         ),
