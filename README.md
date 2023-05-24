@@ -8,6 +8,8 @@ The presentation can be accessed through the following link: [Rush Delivery App 
 
 Please click on the link above to view the presentation.
 
+link to the figma file: https://www.figma.com/file/OPk92kmDfk9q6oxkREzhWN/Rush-Grocery?type=design&node-id=0%3A1&t=hmnS33dJ8ehzznp8-1 
+
 ## Contents
 
 The presentation covers the following topics:
